@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Fauzan Fiqriansyah/AndroidStudioProjects/SmartMoneyRecognition/app/src/main/res/drawable/camera_icon.xml" value="0.1" />
+        <entry key="..\:/Users/Fauzan Fiqriansyah/AndroidStudioProjects/SmartMoneyRecognition/app/src/main/res/drawable/customborder.xml" value="0.1" />
+        <entry key="..\:/Users/Fauzan Fiqriansyah/AndroidStudioProjects/SmartMoneyRecognition/app/src/main/res/drawable/image.xml" value="0.19282051282051282" />
+        <entry key="..\:/Users/Fauzan Fiqriansyah/AndroidStudioProjects/SmartMoneyRecognition/app/src/main/res/drawable/navigate_next.xml" value="0.19583333333333333" />
+        <entry key="..\:/Users/Fauzan Fiqriansyah/AndroidStudioProjects/SmartMoneyRecognition/app/src/main/res/drawable/profile_foreground.xml" value="0.1" />
+        <entry key="..\:/Users/Fauzan Fiqriansyah/AndroidStudioProjects/SmartMoneyRecognition/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/Fauzan Fiqriansyah/AndroidStudioProjects/SmartMoneyRecognition/app/src/main/res/layout/fragment_camera.xml" value="0.22" />
+        <entry key="..\:/Users/Fauzan Fiqriansyah/AndroidStudioProjects/SmartMoneyRecognition/app/src/main/res/layout/fragment_camera1.xml" value="0.1" />
+        <entry key="..\:/Users/Fauzan Fiqriansyah/AndroidStudioProjects/SmartMoneyRecognition/app/src/main/res/layout/fragment_camera_step1.xml" value="0.22" />
+        <entry key="..\:/Users/Fauzan Fiqriansyah/AndroidStudioProjects/SmartMoneyRecognition/app/src/main/res/layout/fragment_camera_step2.xml" value="0.22" />
+        <entry key="..\:/Users/Fauzan Fiqriansyah/AndroidStudioProjects/SmartMoneyRecognition/app/src/main/res/layout/fragment_camera_step3.xml" value="0.22" />
+        <entry key="..\:/Users/Fauzan Fiqriansyah/AndroidStudioProjects/SmartMoneyRecognition/app/src/main/res/layout/fragment_headline.xml" value="0.22" />
+        <entry key="..\:/Users/Fauzan Fiqriansyah/AndroidStudioProjects/SmartMoneyRecognition/app/src/main/res/layout/fragment_home.xml" value="0.22" />
+        <entry key="..\:/Users/Fauzan Fiqriansyah/AndroidStudioProjects/SmartMoneyRecognition/app/src/main/res/layout/fragment_profil.xml" value="0.14666666666666667" />
+        <entry key="..\:/Users/Fauzan Fiqriansyah/AndroidStudioProjects/SmartMoneyRecognition/app/src/main/res/layout/rv_item_horizontal.xml" value="0.14666666666666667" />
+        <entry key="..\:/Users/Fauzan Fiqriansyah/AndroidStudioProjects/SmartMoneyRecognition/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
