@@ -48,7 +48,9 @@
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="20dp"
+            android:stretchColumns="1"
+            android:shrinkColumns="1">
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -80,14 +82,16 @@
                     android:textStyle="bold"
                     android:textColor="@color/black"
                     android:fontFamily="@font/inter_regular"
-                    android:paddingTop="10dp"/>
+                    android:paddingTop="10dp"
+                    android:minLines="2"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/example_alamat"
                     android:textSize="16sp"
                     android:textColor="@color/black"
-                    android:fontFamily="@font/inter_regular"/>
+                    android:fontFamily="@font/inter_regular"
+                    android:minLines="2"/>
             </TableRow>
             <TableRow
                 android:layout_width="match_parent"
