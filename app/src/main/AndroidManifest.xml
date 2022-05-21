@@ -10,21 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartMoneyRecognition">
         <activity
-            android:name=".activity.TutorialActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.TipsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.UangIndonesiaActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.UangDuniaActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.AnalisisActivity"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

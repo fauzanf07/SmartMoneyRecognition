@@ -1,15 +1,13 @@
 package com.example.smartmoneyrecognition.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartmoneyrecognition.data_class.rvData
 import com.example.smartmoneyrecognition.databinding.RvItemHorizontalBinding
 
-class rvHorizontalAdapter(
-    private val listRvData: ArrayList<rvData>
-) : RecyclerView.Adapter<rvHorizontalAdapter.ListViewHolder>() {
-
+class rvHorizontalAdapter(private val listRvData: ArrayList<rvData>) : RecyclerView.Adapter<rvHorizontalAdapter.ListViewHolder>() {
     class ListViewHolder(private val binding: RvItemHorizontalBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(images: Int, title: String){
             binding.rvImage.setImageResource(images)
