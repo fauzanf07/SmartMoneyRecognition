@@ -37,4 +37,18 @@
     <string name="ikon_kamera">Ikon Kamera</string>
     <string name="avatar_profil">Avatar Profil</string>
     <string name="gambar_contoh">Gambar Contoh</string>
+    <string name="jenis_jenis_mata_uang_di_dunia">Jenis - Jenis Mata Uang di Dunia</string>
+    <string name="button_back">btn_back</string>
+    <string name="hasil_analisis">Hasil Analisis</string>
+    <string name="tv_hasil_analisis">Hasil Analisis :</string>
+    <string name="gambar_uang">Gambar Uang</string>
+    <string name="tv_analisis_uang">Uang Asli</string>
+    <string name="text_detail">Detail :</string>
+    <string name="tv_analisis_lagi">Analisis Lagi</string>
+    <string name="title_anti_uang_palsu">Tips Anti Uang Palsu</string>
+    <string name="text_tutorial">Tutorial</string>
+    <string name="title_tutorial">Langkah - Langkah \nMenggunakan Aplikasi \n SMART MONEY RECOGNITION</string>
+    <string name="tv_dilihat">Dilihat</string>
+    <string name="tv_diraba">Diraba</string>
+    <string name="tv_diterawang">Diterawang</string>
 </resources>
