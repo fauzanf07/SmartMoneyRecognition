@@ -65,6 +65,7 @@
             tools:listitem="@layout/rv_item_horizontal" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cek_uang"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="10dp"

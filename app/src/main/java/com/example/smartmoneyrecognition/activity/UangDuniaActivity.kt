@@ -6,16 +6,23 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.smartmoneyrecognition.R
 import com.example.smartmoneyrecognition.adapter.RvMataUangAdapter
 import com.example.smartmoneyrecognition.databinding.ActivityUangDuniaBinding
+import com.example.smartmoneyrecognition.databinding.ActivityUangIndonesiaBinding
 import com.example.smartmoneyrecognition.model.MataUangDuniaViewModel
 
 class UangDuniaActivity : AppCompatActivity() {
-    private var _binding: ActivityUangDuniaBinding?= null
-    private val  binding get() = _binding!!
+    private lateinit var binding: ActivityUangDuniaBinding
     private lateinit var viewModel: MataUangDuniaViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_uang_dunia)
+        binding = ActivityUangDuniaBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.title = ""
+
+        supportActionBar?.setDisplayShowTitleEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         viewModel = ViewModelProvider(this).get(MataUangDuniaViewModel::class.java)
 
@@ -23,5 +30,9 @@ class UangDuniaActivity : AppCompatActivity() {
 
         val rvAdapter = RvMataUangAdapter(getList)
         binding.rvMataUangDunia.adapter = rvAdapter
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
     }
 }

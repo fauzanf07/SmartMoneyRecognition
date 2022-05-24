@@ -13,5 +13,15 @@ class TipsActivity : AppCompatActivity() {
         binding = ActivityTipsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.title = ""
+
+        supportActionBar?.setDisplayShowTitleEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
     }
 }

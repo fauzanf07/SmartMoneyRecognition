@@ -1,11 +1,13 @@
 package com.example.smartmoneyrecognition.fragments.camera_steps
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.smartmoneyrecognition.R
+import com.example.smartmoneyrecognition.activity.AnalisisActivity
 import com.example.smartmoneyrecognition.databinding.FragmentCameraStep3Binding
 
 
@@ -33,6 +35,10 @@ class CameraStep3 : Fragment() {
         binding.before.setOnClickListener {
             setCurrentFragment(beforeFragment)
         }
+        binding.analyze.setOnClickListener{
+            val intent = Intent(requireContext(),AnalisisActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun setCurrentFragment(fragment: Fragment){
@@ -40,7 +46,6 @@ class CameraStep3 : Fragment() {
             replace(R.id.flCameraFragment,fragment)
             commit()
         }
-
     }
 
 }

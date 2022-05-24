@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import com.example.smartmoneyrecognition.R
 import com.example.smartmoneyrecognition.adapter.rvHorizontalAdapter
 import com.example.smartmoneyrecognition.databinding.FragmentHomeBinding
 import com.example.smartmoneyrecognition.model.HomeViewModel
@@ -37,5 +38,14 @@ class HomeFragment : Fragment() {
 
         val rvAdapter = rvHorizontalAdapter(getList)
         binding.rvHorizontal.adapter = rvAdapter
+
+        val cameraFragment = CameraFragment()
+
+        binding.cekUang.setOnClickListener {
+            activity?.supportFragmentManager?.beginTransaction()?.apply {
+                replace(R.id.flFragment,cameraFragment)
+                commit()
+            }
+        }
     }
 }

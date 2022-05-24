@@ -24,13 +24,6 @@
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/ivBack"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_back"
-            android:contentDescription="@string/button_back" />
     </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
@@ -68,12 +61,9 @@
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
+                android:layout_marginEnd="30dp"
                 android:src="@drawable/picture"
                 android:contentDescription="@string/gambar_uang"/>
-
-            <Space
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"/>
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -116,12 +106,9 @@
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
+                android:layout_marginEnd="30dp"
                 android:src="@drawable/picture"
                 android:contentDescription="@string/gambar_uang"/>
-
-            <Space
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"/>
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -164,12 +151,9 @@
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
+                android:layout_marginEnd="30dp"
                 android:src="@drawable/picture"
                 android:contentDescription="@string/gambar_uang"/>
-
-            <Space
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"/>
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
