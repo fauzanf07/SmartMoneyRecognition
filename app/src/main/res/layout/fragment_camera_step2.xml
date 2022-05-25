@@ -75,6 +75,7 @@
                 android:backgroundTint="@color/bluish_cyan"
                 tools:ignore="ButtonStyle" />
             <Button
+                android:id="@+id/gallery"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:text="@string/galeri"

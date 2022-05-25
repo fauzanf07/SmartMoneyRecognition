@@ -3,6 +3,7 @@ package com.example.smartmoneyrecognition
 import android.Manifest
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -23,9 +24,7 @@ class MainActivity : AppCompatActivity() {
         const val CAMERA_X_RESULT = 200
         private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
         private const val REQUEST_CODE_PERMISSIONS = 10
-        var resultImg1:Bitmap ?=null
-        var resultImg2:Bitmap ?=null
-        var resultImg3:Bitmap ?=null
+        var resultImage = ArrayList<Bitmap?>()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,6 +58,9 @@ class MainActivity : AppCompatActivity() {
                 REQUIRED_PERMISSIONS,
                 REQUEST_CODE_PERMISSIONS
             )
+        }
+        for(i in 0..2){
+            resultImage.add(null)
         }
     }
 
