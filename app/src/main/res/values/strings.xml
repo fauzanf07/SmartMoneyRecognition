@@ -39,7 +39,7 @@
     <string name="gambar_contoh">Gambar Contoh</string>
     <string name="hasil_analisis">Hasil Analisis</string>
     <string name="button_back">Button Back</string>
-    <string name="tv_jenis_uang_indonesia">Jenis - Jenis Uang yang Beredar di Indonesia</string>
+    <string name="tv_jenis_uang_indonesia">Jenis - Jenis Uang yang Beredar \ndi Indonesia</string>
     <string name="tv_bagian_depan">Bagian Depan</string>
     <string name="tv_bagian_belakang">Bagian Belakang</string>
     <string name="tv_uang_rupiah">Uang Rp 100.000</string>
@@ -59,4 +59,24 @@
     <string name="tv_dilihat">Dilihat</string>
     <string name="tv_diraba">Diraba</string>
     <string name="tv_diterawang">Diterawang</string>
+    <string name="aboutUs">About Us</string>
+    <string name="about_us">ABOUT US</string>
+    <string name="title_mobile">Mobile Devs</string>
+    <string name="id_fauzan">A2299F2579</string>
+    <string name="title_ml">MLearning Devs</string>
+    <string name="title_cloud">Cloud Devs</string>
+    <string name="title_app">SMART MONEY RECOGNITION</string>
+    <string name="group_id">C22-PS114</string>
+    <string name="logo_splash">logo splash</string>
+    <string name="fauzan_fiqriansyah">Fauzan Fiqriansyah</string>
+    <string name="m_fikri_ulumuddin">M. Fikri Ulumuddin</string>
+    <string name="nidya_putri_andini">Nidya Putri Andini</string>
+    <string name="id_ayu">A2180G1746</string>
+    <string name="id_fikri">M2180G1745</string>
+    <string name="id_nidya">M7180G1747</string>
+    <string name="ivander_achmad_w">Ivander Achmad . W</string>
+    <string name="wilson_manuel">Wilson Manuel</string>
+    <string name="id_ivan">C2008F0801</string>
+    <string name="id_wilson">C7271F2356</string>
+    <string name="logo_bangkit">logo bangkit</string>
 </resources>

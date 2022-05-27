@@ -44,7 +44,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="30dp"
             android:text="@string/jenis_jenis_mata_uang_di_dunia"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -54,7 +53,8 @@
             android:id="@+id/rvMataUangDunia"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:gravity="center"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/rv_mata_uang" />
