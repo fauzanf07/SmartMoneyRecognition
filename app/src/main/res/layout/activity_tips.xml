@@ -22,7 +22,7 @@
             android:fontFamily="@font/inter_regular"
             android:text="@string/smart_money_recognition"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="17sp"
             android:textStyle="bold" />
     </androidx.appcompat.widget.Toolbar>
 

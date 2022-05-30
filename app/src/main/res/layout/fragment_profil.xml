@@ -67,7 +67,7 @@
                         android:adjustViewBounds="true"
                         android:contentDescription="@string/avatar_profil" />
 
-                    <Space
+                    <androidx.legacy.widget.Space
                         android:layout_width="5dp"
                         android:layout_height="match_parent" />
 
@@ -88,8 +88,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/fauzan_fiqriansyah"
-                        android:layout_gravity="center"/>
-                    <Space
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="5dp"/>
+                    <androidx.legacy.widget.Space
                         android:layout_width="5dp"
                         android:layout_height="match_parent" />
 
@@ -108,7 +109,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/id_fauzan"
                         android:layout_gravity="center"/>
-                    <Space
+                    <androidx.legacy.widget.Space
                         android:layout_width="5dp"
                         android:layout_height="match_parent" />
 
@@ -154,7 +155,7 @@
                         android:adjustViewBounds="true"
                         android:contentDescription="@string/avatar_profil" />
 
-                    <Space
+                    <androidx.legacy.widget.Space
                         android:layout_width="5dp"
                         android:layout_height="match_parent" />
 
@@ -164,7 +165,8 @@
                         android:src="@drawable/avatar"
                         android:layout_gravity="center_horizontal"
                         android:adjustViewBounds="true"
-                        android:contentDescription="@string/avatar_profil" />
+                        android:contentDescription="@string/avatar_profil"
+                        android:layout_marginStart="5dp"/>
                 </TableRow>
 
                 <TableRow
@@ -176,7 +178,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/m_fikri_ulumuddin"
                         android:layout_gravity="center"/>
-                    <Space
+                    <androidx.legacy.widget.Space
                         android:layout_width="5dp"
                         android:layout_height="match_parent" />
 
@@ -195,7 +197,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/id_fikri"
                         android:layout_gravity="center"/>
-                    <Space
+                    <androidx.legacy.widget.Space
                         android:layout_width="5dp"
                         android:layout_height="match_parent" />
 
@@ -241,7 +243,7 @@
                         android:adjustViewBounds="true"
                         android:contentDescription="@string/avatar_profil" />
 
-                    <Space
+                    <androidx.legacy.widget.Space
                         android:layout_width="5dp"
                         android:layout_height="match_parent" />
 
@@ -263,7 +265,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/ivander_achmad_w"
                         android:layout_gravity="center"/>
-                    <Space
+                    <androidx.legacy.widget.Space
                         android:layout_width="5dp"
                         android:layout_height="match_parent" />
 
@@ -282,7 +284,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/id_ivan"
                         android:layout_gravity="center"/>
-                    <Space
+                    <androidx.legacy.widget.Space
                         android:layout_width="5dp"
                         android:layout_height="match_parent" />
 
