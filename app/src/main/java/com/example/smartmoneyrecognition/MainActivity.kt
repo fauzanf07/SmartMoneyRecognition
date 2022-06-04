@@ -59,9 +59,7 @@ class MainActivity : AppCompatActivity() {
                 REQUEST_CODE_PERMISSIONS
             )
         }
-        for(i in 0..2){
-            resultImage.add(null)
-        }
+        resultImage.add(null)
     }
 
     private fun setCurrentFragment(fragment: Fragment)=
