@@ -2,14 +2,17 @@ package com.example.smartmoneyrecognition.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import androidx.lifecycle.ViewModelProvider
+import com.example.smartmoneyrecognition.R
 import com.example.smartmoneyrecognition.adapter.RvUangIndonesiaAdapter
 import com.example.smartmoneyrecognition.databinding.ActivityUangIndonesiaBinding
 import com.example.smartmoneyrecognition.model.JenisUangIndonesiaViewModel
 
 class UangIndonesiaActivity : AppCompatActivity() {
     private lateinit var binding: ActivityUangIndonesiaBinding
-    private lateinit var viewModel: JenisUangIndonesiaViewModel
+//    private lateinit var viewModel: JenisUangIndonesiaViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,12 +25,18 @@ class UangIndonesiaActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowTitleEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        viewModel = ViewModelProvider(this).get(JenisUangIndonesiaViewModel::class.java)
+        val webView = findViewById<WebView>(R.id.webview)
+        webView.webViewClient = WebViewClient()
+        webView.loadUrl("https://smr-extrav2-b7waoljlma-et.a.run.app/Extra3")
+        val webSettings = webView.settings
+        webSettings.javaScriptEnabled = true
 
-        val getList = viewModel.getRvLists()
-
-        val rvAdapter = RvUangIndonesiaAdapter(getList)
-        binding.rvJenisUangIndonesia.adapter = rvAdapter
+//        viewModel = ViewModelProvider(this).get(JenisUangIndonesiaViewModel::class.java)
+//
+//        val getList = viewModel.getRvLists()
+//
+//        val rvAdapter = RvUangIndonesiaAdapter(getList)
+//        binding.rvJenisUangIndonesia.adapter = rvAdapter
     }
 
     override fun onSupportNavigateUp(): Boolean {
