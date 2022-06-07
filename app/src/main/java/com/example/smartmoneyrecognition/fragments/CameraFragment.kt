@@ -2,39 +2,36 @@ package com.example.smartmoneyrecognition.fragments
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
-import com.example.smartmoneyrecognition.MainActivity
+import com.example.smartmoneyrecognition.*
 import com.example.smartmoneyrecognition.activity.AnalisisActivity
 import com.example.smartmoneyrecognition.activity.CameraActivity
+import com.example.smartmoneyrecognition.activity.MainActivity
+import com.example.smartmoneyrecognition.api.ApiConfig
 import com.example.smartmoneyrecognition.databinding.FragmentCameraBinding
-import com.example.smartmoneyrecognition.getIMGSize
-import com.example.smartmoneyrecognition.ml.Model1Finish
-import com.example.smartmoneyrecognition.uriToFile
-import com.google.firebase.ml.common.modeldownload.FirebaseModelDownloadConditions
-import com.google.firebase.ml.common.modeldownload.FirebaseModelManager
-import com.google.firebase.ml.custom.*
-import org.tensorflow.lite.DataType
-import org.tensorflow.lite.support.image.TensorImage
+import com.example.smartmoneyrecognition.model.resultsModel
+import com.example.smartmoneyrecognition.responses.ApiResponse
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
-import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
-import java.io.BufferedReader
-import java.io.InputStreamReader
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class CameraFragment : Fragment() {
     private var _binding: FragmentCameraBinding?= null
     private val  binding get() = _binding!!
+    private var getFile: File? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,7 +51,8 @@ class CameraFragment : Fragment() {
 
         binding.analyze.setOnClickListener{
             if(MainActivity.resultImage.get(0)!=null){
-                analyzeTflite(MainActivity.resultImage.get(0)!!)
+                showLoading(true)
+                uploadImage()
             }else{
                 Toast.makeText(requireActivity(),"Insert dulu gambar", Toast.LENGTH_SHORT).show()
             }
@@ -88,6 +86,7 @@ class CameraFragment : Fragment() {
         if (result.resultCode == Activity.RESULT_OK) {
             val selectedImg: Uri = result.data?.data as Uri
             val myFile = uriToFile(selectedImg, requireActivity())
+            getFile = myFile
             val size = getIMGSize(myFile)
             val result = BitmapFactory.decodeFile(myFile.path)
 
@@ -106,7 +105,7 @@ class CameraFragment : Fragment() {
     ) {
         if (it.resultCode == MainActivity.CAMERA_X_RESULT) {
             val myFile = it.data?.getSerializableExtra("picture") as File
-            val isBackCamera = it.data?.getBooleanExtra("isBackCamera", true) as Boolean
+            getFile = myFile
             val result = BitmapFactory.decodeFile(myFile.path)
             MainActivity.resultImage.set(0,result)
             binding.img.setImageBitmap(result)
@@ -121,126 +120,73 @@ class CameraFragment : Fragment() {
 
     }
 
-    private fun analyze(image: Bitmap){
-        val remoteModel = FirebaseCustomRemoteModel.Builder("smr_1_model").build()
-        val conditions = FirebaseModelDownloadConditions.Builder()
-            .requireWifi()
-            .build()
-        FirebaseModelManager.getInstance().download(remoteModel, conditions)
-            .addOnCompleteListener {
-                // Success.
-            }
-        val localModel = FirebaseCustomLocalModel.Builder()
-            .setAssetFilePath("model1_finish_assets.tflite")
-            .build()
-
-        val options = FirebaseModelInterpreterOptions.Builder(localModel).build()
-        val interpreter = FirebaseModelInterpreter.getInstance(options)
-
-        FirebaseModelManager.getInstance().download(remoteModel, conditions)
-            .addOnCompleteListener {
-            }
-
-        FirebaseModelManager.getInstance().isModelDownloaded(remoteModel)
-            .addOnSuccessListener { isDownloaded ->
-                val options =
-                    if (isDownloaded) {
-                        FirebaseModelInterpreterOptions.Builder(remoteModel).build()
-                    } else {
-                        FirebaseModelInterpreterOptions.Builder(localModel).build()
+    private fun uploadImage(){
+        val results = ArrayList<Float>()
+        val arrLabels = arrayOf("Rp. 50000 Asli", "Rp. 100000 Asli", "Rp. 50000 Palsu", "Rp. 100000 Palsu")
+        if(getFile != null) {
+            val file = reduceFileImage(getFile as File)
+            val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
+            val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
+                "img",
+                file.name,
+                requestImageFile
+            )
+            val service = ApiConfig.getApiService().postImage(imageMultipart)
+            service.enqueue(object : Callback<ApiResponse> {
+                override fun onResponse(
+                    call: Call<ApiResponse>,
+                    response: Response<ApiResponse>
+                ) {
+                    if(response.isSuccessful){
+                        val responseBody = response.body()
+                        if(responseBody != null){
+                            results.add(responseBody.r_0.toFloat())
+                            results.add(responseBody.r_1.toFloat())
+                            results.add(responseBody.r_2.toFloat())
+                            results.add(responseBody.r_3.toFloat())
+                            val idx = getMax(results)
+                            val lastResult = resultsModel(idx,arrLabels[idx],results.get(idx))
+                            val intent = Intent(requireContext(), AnalisisActivity::class.java)
+                            intent.putExtra("result",lastResult)
+                            showLoading(false)
+                            startActivity(intent)
+                        }
+                    }else{
+                        showLoading(false)
+                        Toast.makeText(requireActivity(), response.body().toString()+" "+ response.message(), Toast.LENGTH_SHORT).show()
                     }
-                val interpreter = FirebaseModelInterpreter.getInstance(options)
-            }
-
-        val inputOutputOptions = FirebaseModelInputOutputOptions.Builder()
-            .setInputFormat(0, FirebaseModelDataType.FLOAT32, intArrayOf(1, 224, 224, 3))
-            .setOutputFormat(0, FirebaseModelDataType.FLOAT32, intArrayOf(1, 4))
-            .build()
-
-        val bitmap = Bitmap.createScaledBitmap(image, 224, 224, true)
-
-        val batchNum = 0
-        val input = Array(1) { Array(224) { Array(224) { FloatArray(3) } } }
-        for (x in 0..223) {
-            for (y in 0..223) {
-                val pixel = bitmap.getPixel(x, y)
-                // Normalize channel values to [-1.0, 1.0]. This requirement varies by
-                // model. For example, some models might require values to be normalized
-                // to the range [0.0, 1.0] instead.
-                input[batchNum][x][y][0] = (Color.red(pixel) - 127) / 255.0f
-                input[batchNum][x][y][1] = (Color.green(pixel) - 127) / 255.0f
-                input[batchNum][x][y][2] = (Color.blue(pixel) - 127) / 255.0f
-            }
-        }
-
-        val inputs = FirebaseModelInputs.Builder()
-            .add(input) // add() as many input arrays as your model requires
-            .build()
-            interpreter?.run(inputs, inputOutputOptions)
-            ?.addOnSuccessListener { result ->
-                val output = result.getOutput<Array<FloatArray>>(0)
-                val probabilities = output[0]
-                Log.i("MLKit", "jhjhjhjj")
-                val reader = BufferedReader(
-                    InputStreamReader(activity?.assets?.open("labels.txt")))
-                for (i in probabilities.indices) {
-                    val label = reader.readLine()
-                    Log.i("MLKit", String.format("%s: %1.4f", label, probabilities[i]))
                 }
-            }
-            ?.addOnFailureListener { e ->
-            }
 
+                override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+                    showLoading(false)
+                    Toast.makeText(requireActivity(), "Failed to create Instance", Toast.LENGTH_SHORT).show()
+                }
 
-    }
-
-    private fun analyzeTflite(image : Bitmap){
-        val fileName = "labels.txt"
-        val inputString = activity?.application?.assets?.open(fileName)?.bufferedReader().use {
-            it?.readText()
+            })
+        }else{
+            showLoading(false)
+            Toast.makeText(requireActivity(), "Insert gafal", Toast.LENGTH_SHORT).show()
         }
-        val townList = inputString?.split("\n")
-
-        var resize: Bitmap = Bitmap.createScaledBitmap(image,224,224,true)
-
-        val model = Model1Finish.newInstance(requireActivity())
-
-        val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 224, 224, 3), DataType.FLOAT32)
-
-        var tImage = TensorImage(DataType.FLOAT32)
-        tImage.load(resize)
-        var byteBuffer = tImage.buffer
-        inputFeature0.loadBuffer(byteBuffer)
-
-        val outputs = model.process(inputFeature0)
-        val outputFeature0 = outputs.outputFeature0AsTensorBuffer
-
-        var max  = getMax(outputFeature0.floatArray)
-
-
-        val intent = Intent(requireContext(), AnalisisActivity::class.java)
-        intent.putExtra("index",max)
-        intent.putExtra("probability",outputFeature0.floatArray[max])
-        intent.putExtra("image",image)
-        startActivity(intent)
-
-        Toast.makeText(requireContext(),"${townList?.get(0)} : ${outputFeature0.floatArray[0]}\n" +
-                "${townList?.get(1)} : ${outputFeature0.floatArray[1]}\n" +
-                "${townList?.get(2)} : ${outputFeature0.floatArray[2]}\n" +
-                "${townList?.get(3)} : ${outputFeature0.floatArray[3]}\n",Toast.LENGTH_SHORT).show()
-        model.close()
     }
 
-    private fun getMax(arr: FloatArray): Int{
+    private fun getMax(arr: ArrayList<Float>): Int{
         var idx = 0
         var min = 0.0f
 
         for(i in 0..3){
-            if(arr[i]>min){
+            if(arr.get(i)>min){
                 idx = i
-                min = arr[i]
+                min = arr.get(i)
             }
         }
         return idx
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.progressBar.visibility = View.VISIBLE
+        } else {
+            binding.progressBar.visibility = View.GONE
+        }
     }
 }

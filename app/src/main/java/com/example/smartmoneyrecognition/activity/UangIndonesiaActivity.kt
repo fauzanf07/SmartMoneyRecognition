@@ -4,11 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import androidx.lifecycle.ViewModelProvider
 import com.example.smartmoneyrecognition.R
-import com.example.smartmoneyrecognition.adapter.RvUangIndonesiaAdapter
 import com.example.smartmoneyrecognition.databinding.ActivityUangIndonesiaBinding
-import com.example.smartmoneyrecognition.model.JenisUangIndonesiaViewModel
 
 class UangIndonesiaActivity : AppCompatActivity() {
     private lateinit var binding: ActivityUangIndonesiaBinding

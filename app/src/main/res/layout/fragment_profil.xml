@@ -62,7 +62,7 @@
                     <ImageView
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/avatar"
+                        android:src="@drawable/fauzan"
                         android:layout_gravity="center_horizontal"
                         android:adjustViewBounds="true"
                         android:contentDescription="@string/avatar_profil" />
@@ -74,7 +74,7 @@
                     <ImageView
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/avatar"
+                        android:src="@drawable/ayu"
                         android:layout_gravity="center_horizontal"
                         android:adjustViewBounds="true"
                         android:contentDescription="@string/avatar_profil" />
@@ -150,7 +150,7 @@
                     <ImageView
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/avatar"
+                        android:src="@drawable/fikri"
                         android:layout_gravity="center_horizontal"
                         android:adjustViewBounds="true"
                         android:contentDescription="@string/avatar_profil" />
@@ -162,7 +162,7 @@
                     <ImageView
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/avatar"
+                        android:src="@drawable/nidya"
                         android:layout_gravity="center_horizontal"
                         android:adjustViewBounds="true"
                         android:contentDescription="@string/avatar_profil"
@@ -238,7 +238,7 @@
                     <ImageView
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/avatar"
+                        android:src="@drawable/ivander"
                         android:layout_gravity="center_horizontal"
                         android:adjustViewBounds="true"
                         android:contentDescription="@string/avatar_profil" />
@@ -250,7 +250,7 @@
                     <ImageView
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/avatar"
+                        android:src="@drawable/wilson"
                         android:layout_gravity="center_horizontal"
                         android:adjustViewBounds="true"
                         android:contentDescription="@string/avatar_profil" />
