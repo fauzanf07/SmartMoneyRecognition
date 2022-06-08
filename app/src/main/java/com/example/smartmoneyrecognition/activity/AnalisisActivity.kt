@@ -47,7 +47,7 @@ class AnalisisActivity : AppCompatActivity() {
 
         binding.ivAnalisis.setImageBitmap(MainActivity.resultImage.get(0))
 
-        if(idx==2 || idx==3){
+        if(idx==0 || idx==2){
             binding.tvHasilAnalisis.setBackgroundResource(R.drawable.rectangle_red)
             binding.tvHasilAnalisis.setTextColor(Color.RED)
             binding.tvHasilAnalisis.text = "UANG PALSU"

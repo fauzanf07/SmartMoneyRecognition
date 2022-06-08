@@ -49,6 +49,24 @@ class CameraFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val content = """
+             <p>Berikut merupakan tata cara untuk menganalasis uang anda apakah palsu atau tidak menggunakan fitur ini.</p>
+             <p>Mengambil gambar uang menggunakan kamera :</p>
+             <ol>
+                <li>Tekan tombol Ambil Foto dibawah ini.</li>
+                <li>Posisikan uang anda di sumber cahaya</li>
+                <li>Kemudian capture gambar</li>
+                <li>Tekan tombol analisis untuk menganalisis uang anda</li>
+             </ol>
+             <p>Mengambil gambar uang menggunakan galeri :</p>
+             <ol>
+                <li>Tekan tombol Galeri dibawah ini.</li>
+                <li>Pilih gambar uang yang tersimpan di galeri anda (Gambar harus berukuran 1:1).</li>
+                <li>Tekan tombol analisis untuk menganalisis uang anda</li>
+             </ol>
+        """.trimIndent()
+        binding.procedure.setHtml(content)
+
         binding.analyze.setOnClickListener{
             if(MainActivity.resultImage.get(0)!=null){
                 showLoading(true)
@@ -64,6 +82,7 @@ class CameraFragment : Fragment() {
         binding.gallery.setOnClickListener{
             startGallery()
         }
+
     }
 
     private fun startCameraX() {
@@ -122,7 +141,7 @@ class CameraFragment : Fragment() {
 
     private fun uploadImage(){
         val results = ArrayList<Float>()
-        val arrLabels = arrayOf("Rp. 50000 Asli", "Rp. 100000 Asli", "Rp. 50000 Palsu", "Rp. 100000 Palsu")
+        val arrLabels = arrayOf("Rp. 100000 Palsu","Rp. 100000 Asli","Rp. 50000 Palsu","Rp. 50000 Asli")
         if(getFile != null) {
             val file = reduceFileImage(getFile as File)
             val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
