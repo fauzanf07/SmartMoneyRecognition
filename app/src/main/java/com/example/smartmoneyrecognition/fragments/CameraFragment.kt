@@ -125,7 +125,7 @@ class CameraFragment : Fragment() {
         if (it.resultCode == MainActivity.CAMERA_X_RESULT) {
             val myFile = it.data?.getSerializableExtra("picture") as File
             getFile = myFile
-            val result = BitmapFactory.decodeFile(myFile.path)
+            val result = rotateBitmap(BitmapFactory.decodeFile(myFile.path))
             MainActivity.resultImage.set(0,result)
             binding.img.setImageBitmap(result)
         }

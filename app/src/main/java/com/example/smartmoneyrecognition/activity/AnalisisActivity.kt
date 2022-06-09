@@ -27,23 +27,10 @@ class AnalisisActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowTitleEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-
-        val labels = ArrayList<String>()
-        labels.add("Rp. 50000 Asli")
-        labels.add("Rp. 100000 Asli")
-        labels.add("Rp. 50000 Palsu")
-        labels.add("Rp. 100000 Palsu")
-
-//        if(!isInternetAvailable()){
-//            idx = intent.getIntExtra("index",0)
-//            prob = intent.getFloatExtra("probability",0.0f)
-//            label = labels.get(idx)
-//        }
-
-            val result = intent.getSerializableExtra("result") as resultsModel
-            idx = result.index
-            prob = result.prob
-            label = result.label
+        val result = intent.getSerializableExtra("result") as resultsModel
+        idx = result.index
+        prob = result.prob
+        label = result.label
 
         binding.ivAnalisis.setImageBitmap(MainActivity.resultImage.get(0))
 
@@ -63,18 +50,13 @@ class AnalisisActivity : AppCompatActivity() {
 
         binding.tvDetailAnalisis.setHtml(detail)
 
+        binding.tvAnalisisLagi.setOnClickListener {
+            finish()
+        }
+
     }
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return super.onSupportNavigateUp()
-    }
-
-    fun isInternetAvailable(): Boolean {
-        return try {
-            val ipAddr: InetAddress = InetAddress.getByName("google.com")
-            !ipAddr.equals("")
-        } catch (e: Exception) {
-            false
-        }
     }
 }
